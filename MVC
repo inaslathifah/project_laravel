@@ -1,0 +1,6 @@
+MVC
+Model : Logic ke database
+View : css, html, js, dll
+Controller : model dan View
+Routes: bakal komunikasi dengan url browser
+Artisan : perintah untuk menginstall fitur yang ada di Laravel
