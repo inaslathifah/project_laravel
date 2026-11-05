@@ -1,0 +1,49 @@
+@extends('admin.layouts.app')
+@section('title', 'Managemen Kategori')
+@section('subtitle', 'Pengelompokkan Kategori Produk')
+
+@section('content')
+    <div class="mb-3" align="right">
+        <a href="{{ route('admin.category.create') }}" class="btn-table-action">
+            <i class="bi bi-person-add"></i> Tambah Kategori
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Slug URL</th>
+                    <th>Urutan</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($categories as $key => $data)
+                    <tr>
+                        <td>{{ $key += 1 }}</td>
+                        <td>{{ $data->name ?? '' }}</td>
+                        <td>{{ $data->slug ?? '' }}</td>
+                        <td>{{ $data->sort_order ?? '' }}</td>
+                        <td>
+                            <a class="table-btn-action" title="Edit" href="{{ route('admin.category.edit', $data->id) }}">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="{{ route('admin.category.destroy', $data->id) }}" 
+                                method="POST" class="d-inline"
+                                onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="table-btn-action delete" title="Delete" type="submit">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection

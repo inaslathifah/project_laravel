@@ -21,6 +21,9 @@
 
     <!-- Main Design System & Custom Stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+
+    {{-- QUILL --}}
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -61,7 +64,33 @@
         <!-- END: Page Header Banner -->
 
         <!-- START: Blank Page Content Area -->
-        <div class="card p-4 border-light shadow-sm">
+        @if (session('success'))
+            <div class="alert alert-success mb-3">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <strong>Success:</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-warning mb-3">
+                <i class="bi bi-exclamation-circle-fill me-2"></i>
+                <strong>Error:</strong> {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger mb-3">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <strong>Peringatan:</strong> Terdapat Beberapa Kesalahan Pengisian Form:
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <div class="card p-4 border-light shadow-sm h-100">
             @yield('content')
         </div>
         <!-- END: Blank Page Content Area -->
@@ -94,6 +123,19 @@
 
     <!-- Local dashboard interactions controller -->
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+
+    <!-- QUILL -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+        quill.on('text-change', function(delta, oldDelta, source) {
+            document.querySelector('textarea[name="description"]').value = quill.root.innerHTML;
+            console.log("textarea", quill.root.innerHTML);
+        });
+    </script>
 </body>
 
 </html>

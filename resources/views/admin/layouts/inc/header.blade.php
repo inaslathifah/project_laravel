@@ -11,7 +11,7 @@
          </button>
 
          <!-- Quick Actions Dropdown -->
-         <div class="dropdown ms-2">
+         {{-- <div class="dropdown ms-2">
              <button class="btn-quick-action dropdown-toggle" type="button" data-bs-toggle="dropdown"
                  aria-expanded="false" id="quick-actions-dropdown">
                  <i class="bi bi-plus-lg"></i>
@@ -28,7 +28,7 @@
                  </li>
                  <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> System Settings</a></li>
              </ul>
-         </div>
+         </div> --}}
      </div>
 
      <!-- Mid navbar: search pill -->
@@ -111,9 +111,16 @@
                  <li>
                      <hr class="dropdown-divider">
                  </li>
-                 <li><a class="dropdown-item text-danger" href="page-login.html"><i
-                             class="bi bi-box-arrow-right"></i>
-                         Logout</a></li>
+                 <li>
+                     <form method="POST">
+                         @csrf
+
+                         <button type="submit" class="dropdown-item text-danger">
+                             <i class="bi bi-box-arrow-right"></i>
+                             Logout
+                         </button>
+                     </form>
+                 </li>
              </ul>
          </div>
      </div>
