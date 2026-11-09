@@ -96,7 +96,7 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Gambar</label>
-            <input type="file" name="image" class="form-control">
+            <input type="file" name="image[]" class="form-control">
         </div>
         <div class="mb-3">
             <button type="submit" class="btn-custom btn-custom-primary">

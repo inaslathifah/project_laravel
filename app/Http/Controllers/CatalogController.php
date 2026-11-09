@@ -15,10 +15,17 @@ class CatalogController extends Controller
         return view('category.index', compact('products', 'category'));
     }
 
+    public function listing()
+    {
+        $products = Product::paginate(10);
+
+        return view('products.index', compact('products'));
+    }
+
     public function product(string $slug)
     {
         $product = Product::where('slug', $slug)->first();
 
-        return view('products.index', compact('product'));
+        return view('products.show', compact('product'));
     }
 }

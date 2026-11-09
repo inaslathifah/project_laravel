@@ -12,6 +12,11 @@
                         <i class="bi bi-grid-fill"></i> Kategori
                     </button>
                     <ul class="dropdown-menu shadow border-0 mt-2 py-2" style="font-size: 0.85rem; min-width: 220px;">
+                        @foreach ($categories as $category)
+                            <li><a class="dropdown-item py-1 fw-medium" href="#"><i
+                                        class="bi bi-chevron-right text-primary me-2"></i> {{ $category->name }}</a>
+                            </li>
+                        @endforeach
                         <li><a class="dropdown-item py-1 fw-medium" href="#"><i
                                     class="bi bi-printer text-primary me-2"></i> Digital Printing</a></li>
                         <li><a class="dropdown-item py-1 fw-medium" href="#"><i
@@ -30,10 +35,11 @@
                     </ul>
                 </div>
                 <nav aria-label="Navigasi Header Atas" class="d-flex align-items-center ms-2">
-                    <a class="nav-top-link active" href="index.html"><i class="bi bi-house-door"></i> Beranda</a>
-                    <a class="nav-top-link" href="katalog.html"><i class="bi bi-layers"></i> Semua Produk</a>
-                    <a class="nav-top-link" href="outlet.html"><i class="bi bi-geo-alt"></i> Outlet Kami</a>
-                    <a class="nav-top-link" href="faq.html"><i class="bi bi-question-circle"></i> FAQ</a>
+                    <a class="nav-top-link active" href="/"><i class="bi bi-house-door"></i> Beranda</a>
+                    <a class="nav-top-link" href="{{ route('products.index') }}"><i class="bi bi-layers"></i> Semua
+                        Produk</a>
+                    <a class="nav-top-link" href="{{ route('faq.index') }}"><i class="bi bi-question-circle"></i>
+                        FAQ</a>
                     <a class="nav-top-link" href="kontak.html"><i class="bi bi-telephone"></i> Hubungi Kami</a>
                     <a class="nav-top-link" href="blog.html"><i class="bi bi-journal-text"></i> Blog</a>
                 </nav>

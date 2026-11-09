@@ -24,6 +24,7 @@
 
     {{-- QUILL --}}
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -127,14 +128,18 @@
     <!-- QUILL -->
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script>
-        const quill = new Quill('#editor', {
-            theme: 'snow'
-        });
+        const editor = document.querySelector('#editor');
+        const contentField = document.querySelector('textarea[name="description"], textarea[name="content"]');
 
-        quill.on('text-change', function(delta, oldDelta, source) {
-            document.querySelector('textarea[name="description"]').value = quill.root.innerHTML;
-            console.log("textarea", quill.root.innerHTML);
-        });
+        if (editor && contentField) {
+            const quill = new Quill(editor, {
+                theme: 'snow'
+            });
+
+            quill.on('text-change', function() {
+                contentField.value = quill.root.innerHTML;
+            });
+        }
     </script>
 </body>
 

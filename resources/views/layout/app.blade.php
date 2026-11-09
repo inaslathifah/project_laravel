@@ -17,6 +17,8 @@
         rel="stylesheet" />
     <!-- Core Theme & Layout Styles -->
     <link href="{{ asset('asset-web/assets/css/style.css') }}" rel="stylesheet" />
+    {{-- FAQ --}}
+    <link href="{{ asset('assets/css/faq.css') }}" rel="stylesheet" />
 </head>
 
 <body>
@@ -35,17 +37,8 @@
     <!-- Bootstrap 5 Bundle JS (Includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- QUILL -->
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.min.js"></script>
-    <script>
-        const quill = new Quill('#editor', {
-            theme: 'snow'
-        });
-
-        quill.on('text-change', function(delta, oldDelta, source) {
-            document.querySelector('textarea[name="description"]').value = quill.root.innerHTML;
-        });
-    </script>
+    <!-- Page Script -->
+    <script src="{{ asset('assets/js/faq.js') }}"></script>
 </body>
 
 </html>

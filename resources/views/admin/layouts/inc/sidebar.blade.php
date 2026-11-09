@@ -57,6 +57,19 @@
                     </a>
                 </li>
                 <li class="sidebar-menu-item">
+                    <a href="{{ route('admin.blog.index') }}" class="sidebar-menu-link" title="Blog">
+                        <i class="bi bi-journal-text"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a href="{{ route('admin.category_blog.index') }}" class="sidebar-menu-link"
+                        title="Kategori Blog">
+                        <i class="bi bi-tags"></i>
+                        <span>Kategori Blog</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
                     <a href="{{ route('admin.user.index') }}" class="sidebar-menu-link" id="menu-loginpage"
                         title="Login Page">
                         <i class="bi bi-people"></i>
