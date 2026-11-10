@@ -39,6 +39,9 @@ class CategoryBlogController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'brief_description' => ['nullable', 'string'],
+            'content' => ['required', 'string'],
+            'author' => ['nullable', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', 'unique:category_blogs,slug'],
         ]);
 
@@ -65,6 +68,9 @@ class CategoryBlogController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'brief_description' => ['nullable', 'string'],
+            'content' => ['required', 'string'],
+            'author' => ['nullable', 'string', 'max:255'],
             'slug' => [
                 'nullable',
                 'string',

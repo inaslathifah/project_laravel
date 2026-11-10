@@ -16,15 +16,24 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'email' => ['email', 'required'],
-            'password' => ['required']
+            'password' => ['required'],
         ]);
-        if (Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
             return redirect()->intended(route('admin.dashboard.index'))
-                ->with('success','Selamat datang kembali di Dashboard Admin PPKD Sticker');
+                ->with('success', 'Selamat datang kembali di Dashboard Admin PPKD Sticker');
         }
 
-        return back()->withError(['email'=> 'Email atau password salah.'])->onlyInput('email');
+        return back()->withError(['email' => 'Email atau password salah.'])->onlyInput('email');
+    }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.login')->with('success', 'Berhasil logout');
     }
 }

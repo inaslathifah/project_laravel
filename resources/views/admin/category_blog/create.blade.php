@@ -13,6 +13,27 @@
             @enderror
         </div>
         <div class="mb-3">
+            <label for="brief_description" class="form-label-custom">Deskripsi Singkat</label>
+            <textarea id="brief_description" class="form-control" name="brief_description" rows="3">{{ old('brief_description') }}</textarea>
+            @error('brief_description')
+                <div class="invalid-feedback d-block">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label-custom">Isi *</label>
+            <textarea id="content" class="form-control" name="content" rows="10" required>{{ old('content') }}</textarea>
+            @error('content')
+                <div class="invalid-feedback d-block">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label-custom">Author</label>
+            <input id="author" type="text" class="form-control" name="author" value="{{ old('author') }}">
+            @error('author')
+                <div class="invalid-feedback d-block">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
             <label for="slug" class="form-label-custom">Slug (opsional)</label>
             <input id="slug" type="text" class="form-control" name="slug"
                 value="{{ old('slug', $categoryBlog->slug ?? '') }}">

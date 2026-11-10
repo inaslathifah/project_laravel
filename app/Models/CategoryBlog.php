@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CategoryBlog extends Model
 {
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'brief_description', 'content', 'author'];
 
-    public function blogs(): HasMany
+    public function blogs()
     {
         return $this->hasMany(Blog::class, 'blog_category_blog_id');
     }

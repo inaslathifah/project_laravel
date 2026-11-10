@@ -27,7 +27,7 @@
             <tbody>
                 @forelse ($blogs as $blog)
                     <tr>
-                        <td><img src="{{ asset('storage/' . $data->cover_path ?? '') }}" alt=""></td>
+                        <td><img src="{{ asset('storage/' . $blog->cover_path ?? '') }}" alt=""></td>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $blog->categoryBlog->name ?? '' }}</td>
                         <td>{{ $blog->name ?? '' }}</td>
@@ -52,7 +52,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="text-center">Belum ada blog.</td>
+                        <td colspan="9" class="text-center">Belum ada blog.</td>
                     </tr>
                 @endforelse
             </tbody>

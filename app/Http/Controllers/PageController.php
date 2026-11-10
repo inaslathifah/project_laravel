@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryBlog;
 use App\Models\Setting;
+use App\Models\Blog;
 
 class PageController extends Controller
 {
@@ -20,11 +22,15 @@ class PageController extends Controller
 
     public function blog()
     {
-        return view('blog.index');
+        $categories = CategoryBlog::withCount('blogs')->get();
+        $totalBlogsCount = Blog::count();
+        $blogs = Blog::with('categoryBlog')->latest()->get();
+        return view('blog.index', compact('categories', 'blogs', 'totalBlogsCount'));
     }
 
-    public function showBlog(string $id)
+    public function showBlog(string $slug)
     {
-        return view('blog.show', compact('id'));
+        $blog = Blog::where('slug', $slug)->with('categoryBlog')->first();
+        return view('blog.show', compact('blog'));
     }
 }

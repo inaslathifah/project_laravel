@@ -21,6 +21,8 @@ Route::get('/products/{slug}', [CatalogController::class, 'product'])->name('pro
 Route::get('/products', [CatalogController::class, 'listing'])->name('products.index');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq.index');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact.index');
+Route::get('/blog', [PageController::class, 'blog'])->name('blog.index');
+Route::get('/blog/{slug}', [PageController::class, 'showBlog'])->name('blog.show');
 
 // get, post, put, delete
 // si ('belajar') yg bakal di cari ke browser (localhost:8000/belajar) gitu contohnya.
@@ -43,16 +45,19 @@ Route::get('jumlah', [BelajarController::class, 'jumlah'])->name('jumlah');
 // prefix
 Route::prefix('admin')->name('admin.')->group(function () {
     // mau melihat tampilan login
-    Route::get('/login', [LoginController::class, 'login']);
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::resource('dashboard', DashboardController::class);
-    Route::resource('user', UserController::class);
-    Route::resource('category', CategoryController::class);
-    Route::resource('category_blog', CategoryBlogController::class)->except(['show']);
-    Route::resource('blog', BlogController::class);
-    Route::resource('product', ProductController::class);
+    Route::middleware('auth')->group(function () {
+        Route::resource('dashboard', DashboardController::class);
+        Route::resource('user', UserController::class);
+        Route::resource('category', CategoryController::class);
+        Route::resource('category_blog', CategoryBlogController::class)->except(['show']);
+        Route::resource('blog', BlogController::class);
+        Route::resource('product', ProductController::class);
 
-    Route::get('/settings', [SettingController::class, 'index'])->name('settings');
-    Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
+        Route::get('/settings', [SettingController::class, 'index'])->name('settings');
+        Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
+    });
 });

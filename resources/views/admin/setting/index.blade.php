@@ -50,9 +50,12 @@
                     <label for="" class="form-label">Logo Utama Website</label>
                     <input type="file" name="site_logo">
                 </div>
-                <div>
-                    <img width="100" src="{{ asset('storage/' . $setting['site_logo']->value) }}" alt="Site Logo">
-                </div>
+                @if (optional($setting->get('site_logo'))->value)
+                    <div>
+                        <img width="100" src="{{ asset('storage/' . $setting->get('site_logo')->value) }}"
+                            alt="Site Logo">
+                    </div>
+                @endif
             </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <h5 class="fw-bold text-main mb-3">Kontak & Lokasi</h5>
